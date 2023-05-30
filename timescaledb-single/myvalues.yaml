@@ -1,0 +1,8 @@
+persistentVolumes:
+  wal:
+    enabled: false
+
+service:
+  primary:
+    type: NodePort
+    nodePort: 30001
