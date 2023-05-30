@@ -1,6 +1,8 @@
 persistentVolumes:
   wal:
     enabled: false
+  data:
+    enabled: false
 
 service:
   primary:
