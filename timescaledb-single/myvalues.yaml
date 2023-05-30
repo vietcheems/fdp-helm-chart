@@ -8,3 +8,5 @@ service:
   primary:
     type: NodePort
     nodePort: 30001
+
+replicaCount: 1
