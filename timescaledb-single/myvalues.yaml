@@ -4,9 +4,23 @@ persistentVolumes:
   data:
     enabled: false
 
+secrets:
+  credentials:
+    PATRONI_SUPERUSER_PASSWORD: "admin"
+    PATRONI_REPLICATION_PASSWORD: "admin"
+    PATRONI_admin_PASSWORD: "admin"
+
 service:
   primary:
     type: NodePort
     nodePort: 30001
 
 replicaCount: 1
+
+patroni:
+  bootstrap:
+    users:
+      airbyte:
+        password: airbyte
+        options:
+          - createdb
