@@ -1,0 +1,12 @@
+# postgresql:
+  # enabled: false
+
+# externalDatabase:
+#   host: 10.111.35.137
+#   user: airbyte
+#   password: "airbyte"
+#   database: db_airbyte
+
+webapp:
+  service:
+    type: NodePort
