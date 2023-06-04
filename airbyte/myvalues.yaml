@@ -10,3 +10,4 @@
 webapp:
   service:
     type: NodePort
+    nodePort: 30002

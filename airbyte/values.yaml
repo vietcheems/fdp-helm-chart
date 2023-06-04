@@ -236,6 +236,7 @@ webapp:
   service:
     type: ClusterIP
     port: 80
+    nodePort: 
     annotations: {}
 
   ## Web app resource requests and limits
