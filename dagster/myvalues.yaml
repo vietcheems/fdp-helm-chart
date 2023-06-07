@@ -7,4 +7,4 @@ dagster-user-deployments:
 
 postgresql:
   persistence:
-    enabled: false
+    size: 1Gi
