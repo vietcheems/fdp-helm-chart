@@ -1,0 +1,6 @@
+dagit:
+  service:
+    type: NodePort
+
+dagster-user-deployments:
+  enabled: false
