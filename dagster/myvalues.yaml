@@ -4,3 +4,7 @@ dagit:
 
 dagster-user-deployments:
   enableSubchart: false
+
+postgresql:
+  persistence:
+    enabled: false
