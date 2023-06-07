@@ -3,4 +3,4 @@ dagit:
     type: NodePort
 
 dagster-user-deployments:
-  enabled: false
+  enableSubchart: false
