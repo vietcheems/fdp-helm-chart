@@ -9,7 +9,7 @@ spec:
 #    chart: timescaledb-single
     repoURL: https://github.com/vietcheems/fdp-helm-chart
     targetRevision: HEAD
-    path: guestbook
+    path: timescaledb-single
     helm:
       releaseName: timescaledb
       valueFiles:
