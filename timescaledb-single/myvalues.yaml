@@ -1,8 +1,8 @@
 persistentVolumes:
   wal:
-    enabled: false
+    enabled: true
   data:
-    enabled: false
+    enabled: true
 
 secrets:
   credentials:
