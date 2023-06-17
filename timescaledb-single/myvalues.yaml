@@ -10,10 +10,10 @@ secrets:
     PATRONI_REPLICATION_PASSWORD: "admin"
     PATRONI_admin_PASSWORD: "admin"
 
-service:
-  primary:
-    type: NodePort
-    nodePort: 30001
+# service:
+#   primary:
+#     type: NodePort
+#     nodePort: 30001
 
 replicaCount: 1
 
