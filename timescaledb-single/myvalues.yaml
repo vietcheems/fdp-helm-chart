@@ -1,8 +1,9 @@
 persistentVolumes:
   wal:
-    enabled: true
+    enabled: false
   data:
     enabled: true
+    storageClass: local-storage
 
 secrets:
   credentials:
