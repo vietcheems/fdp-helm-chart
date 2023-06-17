@@ -16,7 +16,7 @@ secrets:
 #     type: NodePort
 #     nodePort: 30001
 
-replicaCount: 1
+replicaCount: 2
 
 patroni:
   bootstrap:
