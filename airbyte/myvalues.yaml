@@ -1,13 +1,13 @@
-# postgresql:
-  # enabled: false
+postgresql:
+  enabled: false
 
-# externalDatabase:
-#   host: 10.111.35.137
-#   user: airbyte
-#   password: "airbyte"
-#   database: db_airbyte
+externalDatabase:
+  host: tc.fdp.svc.cluster.local
+  user: airbyte
+  password: "airbyte"
+  database: db_airbyte
 
-webapp:
-  service:
-    type: NodePort
-    nodePort: 30002
+# webapp:
+#   service:
+#     type: NodePort
+#     nodePort: 30002
