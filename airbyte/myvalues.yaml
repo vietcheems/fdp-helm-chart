@@ -2,7 +2,7 @@ postgresql:
   enabled: false
 
 externalDatabase:
-  host: tc.fdp.svc.cluster.local
+  host: timescaledb.fdp.svc.cluster.local
   user: airbyte
   password: "airbyte"
   database: db_airbyte
