@@ -1,10 +1,17 @@
-dagit:
-  service:
-    type: NodePort
+# dagit:
+#   service:
+#     type: NodePort
 
 dagster-user-deployments:
-  enableSubchart: false
+  enableSubchart: true
+
+# postgresql:
+#   persistence:
+#     size: 1Gi
 
 postgresql:
-  persistence:
-    size: 1Gi
+  enabled: false
+  postgresqlHost: timescaledb.fdp.svc.cluster.local
+  postgresqlUsername: dagster
+  postgresqlPassword: dagster
+  postgresqlDatabase: db_dagster
