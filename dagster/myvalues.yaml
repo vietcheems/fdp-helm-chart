@@ -13,7 +13,7 @@ dagster-user-deployments:
         pullPolicy: Always
       dagsterApiGrpcArgs:
         - "--python-file"
-        - "/financial/financial/__init__.py"
+        - "/financial/financial/financial/__init__.py"
       port: 3030
 
 # postgresql:
