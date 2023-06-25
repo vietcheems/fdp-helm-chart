@@ -14,6 +14,8 @@ dagster-user-deployments:
       dagsterApiGrpcArgs:
         - "--python-file"
         - "/financial/financial/financial/__init__.py"
+        - "--working-directory"
+        - "/financial/financial"
       port: 3030
 
 # postgresql:
