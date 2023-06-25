@@ -4,6 +4,17 @@
 
 dagster-user-deployments:
   enableSubchart: true
+  deployments:
+    - name: "test"
+      image:
+        # When a tag is not supplied, it will default as the Helm chart version.
+        repository: "docker.io/jazzdung/dagster-financial"
+        tag: dev
+        pullPolicy: Always
+      dagsterApiGrpcArgs:
+        - "--python-file"
+        - "/financial/financial/__init__.py"
+      port: 3030
 
 # postgresql:
 #   persistence:
