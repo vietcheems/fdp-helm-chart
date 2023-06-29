@@ -9,7 +9,7 @@ dagster-user-deployments:
       image:
         # When a tag is not supplied, it will default as the Helm chart version.
         repository: "docker.io/jazzdung/dagster-financial"
-        tag: "0.8"
+        tag: "1.0"
         pullPolicy: Always
       dagsterApiGrpcArgs:
         - "--python-file"
@@ -17,6 +17,14 @@ dagster-user-deployments:
         - "--working-directory"
         - "/financial/financial"
       port: 3030
+      volumes:
+        - name: secret-dbt
+          secret:
+            secretName: secret-dbt
+      volumeMounts:
+        - name: secret-dbt
+          mountPath: /secret-dbt
+          readOnly: true
 
 # postgresql:
 #   persistence:
