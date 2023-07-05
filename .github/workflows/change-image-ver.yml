@@ -1,0 +1,20 @@
+name: Repository Dispatch
+
+on:
+  repository_dispatch:
+    types: [new-image]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Update Image Version
+      id: imgupd
+      uses: mikefarah/yq@master
+      with:
+        cmd: yq eval '.dagster-user-deployments.deployments.image.tag = "${{ github.event.client_payload.tag }}"' -i dagster/myvalues.yaml
+      
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update user code image version
