@@ -13,7 +13,7 @@ jobs:
       id: imgupd
       uses: mikefarah/yq@master
       with:
-        cmd: yq eval '.dagster-user-deployments.deployments.image.tag = "${{ github.event.client_payload.tag }}"' -i dagster/myvalues.yaml
+        cmd: yq eval '.dagster-user-deployments.deployments[0].image.tag = "${{ github.event.client_payload.tag }}"' -i dagster/myvalues.yaml
       
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
