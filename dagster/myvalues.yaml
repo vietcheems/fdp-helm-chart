@@ -9,7 +9,7 @@ dagster-user-deployments:
       image:
         # When a tag is not supplied, it will default as the Helm chart version.
         repository: "docker.io/jazzdung/dagster-financial"
-        tag: "2.3"
+        tag: "jazzdung/dagster-financial:sha-eee8959"
         pullPolicy: Always
       dagsterApiGrpcArgs:
         - "--python-file"
@@ -25,11 +25,9 @@ dagster-user-deployments:
         - name: secret-dbt
           mountPath: /secret-dbt
           readOnly: true
-
 # postgresql:
 #   persistence:
 #     size: 1Gi
-
 postgresql:
   enabled: false
   postgresqlHost: timescaledb.fdp.svc.cluster.local
