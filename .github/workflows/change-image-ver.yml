@@ -8,12 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
+    
+    - name: Extract tag
+      run: |
+        export TAG=$(echo ${{ github.event.client_payload.tag }} | cut -d ':' -f 2)
     - name: Update Image Version
       id: imgupd
       uses: mikefarah/yq@master
       with:
-        cmd: yq eval '.dagster-user-deployments.deployments[0].image.tag = "${{ github.event.client_payload.tag }}"' -i dagster/myvalues.yaml
+        cmd: yq eval '.dagster-user-deployments.deployments[0].image.tag = "$TAG"' -i dagster/myvalues.yaml
       
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
