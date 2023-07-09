@@ -1,2 +1,5 @@
 grafana:
   adminPassword: admin
+  service:
+    type: NodePort
+    nodePort: 30004
