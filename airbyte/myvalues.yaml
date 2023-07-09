@@ -7,7 +7,7 @@ externalDatabase:
   password: "airbyte"
   database: db_airbyte
 
-# webapp:
-#   service:
-#     type: NodePort
-#     nodePort: 30002
+webapp:
+  service:
+    type: NodePort
+    nodePort: 30002
