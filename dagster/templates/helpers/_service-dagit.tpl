@@ -17,8 +17,12 @@ spec:
     - port: {{ .Values.dagit.service.port | default 80 }}
       protocol: TCP
       name: http
+      {{- if and (eq .Values.dagit.service.type "NodePort") .Values.dagit.service.nodePort }}
+      nodePort: {{ .Values.dagit.service.nodePort }}
+      {{- end }}
   selector:
     {{- include "dagster.selectorLabels" . | nindent 4 }}
     component: {{ include "dagster.dagit.componentName" . }}
+  
 
 {{ end }}

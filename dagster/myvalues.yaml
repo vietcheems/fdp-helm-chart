@@ -1,6 +1,7 @@
-# dagit:
-#   service:
-#     type: NodePort
+dagit:
+  service:
+    type: NodePort
+    nodePort: 30003
 
 dagster-user-deployments:
   enableSubchart: true

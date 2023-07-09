@@ -158,6 +158,10 @@
                     "title": "Port",
                     "type": "integer"
                 },
+                "nodePort": {
+                    "title": "NodePort port",
+                    "type": "integer"
+                },
                 "annotations": {
                     "$ref": "#/definitions/Annotations"
                 }
