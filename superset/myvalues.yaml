@@ -9,7 +9,7 @@ postgresql:
 supersetNode:
   replicaCount: 1
   connections:
-    db_host: '10.101.54.244'
+    db_host: 'timescaledb.fdp.svc.cluster.local'
     db_port: "5432"
     db_user: superset
     db_pass: superset
