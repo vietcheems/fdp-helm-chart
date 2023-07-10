@@ -1,0 +1,16 @@
+service:
+  type: NodePort
+  nodePort:
+    http: 30007
+
+postgresql:
+  enabled: false
+
+supersetNode:
+  replicaCount: 1
+  connections:
+    db_host: '10.101.54.244'
+    db_port: "5432"
+    db_user: superset
+    db_pass: superset
+    db_name: superset
