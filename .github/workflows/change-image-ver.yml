@@ -1,4 +1,4 @@
-name: Repository Dispatch
+name: Update User Code Image
 
 on:
   repository_dispatch:
