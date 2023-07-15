@@ -23,4 +23,10 @@ supersetCeleryBeat:
   enabled: true
 image:
   repository: perceptiveperceval/thesis
-  tag: "sha-727dc7c"
+  tag: "custom-superset"
+
+configOverrides:
+  override_file: |
+      SAVE_QUERY_SCHEMA = "financial_query"
+      AVAILABLE_SCHEMAS = ["financial_clean", "financial_user"]
+      SAVE_QUERY_TABLE = "query"
