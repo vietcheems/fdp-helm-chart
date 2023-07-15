@@ -27,5 +27,5 @@ supersetCeleryBeat:
   enabled: true
 
 image:
-  repository: apache/superset
-  tag: ""
+  repository: perceptiveperceval/thesis
+  tag: "custom-superset"
