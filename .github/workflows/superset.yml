@@ -1,0 +1,20 @@
+name: Update Superset Image
+
+on:
+  repository_dispatch:
+    types: [new-image-superset]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Update Image Version
+      id: imgupd
+      uses: mikefarah/yq@master
+      with:
+        cmd: TAG=$(echo ${{ github.event.client_payload.tag }} | cut -d ':' -f 2)  yq eval ".image.tag = env(TAG)" -i superset/myvalues.yaml
+      
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update user code image version
