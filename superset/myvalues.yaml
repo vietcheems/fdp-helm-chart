@@ -22,3 +22,10 @@ supersetNode:
     requests:
       cpu: 200m
       memory: 256Mi
+
+supersetCeleryBeat:
+  enabled: true
+
+image:
+  repository: apache/superset
+  tag: ""
