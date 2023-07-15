@@ -2,10 +2,8 @@ service:
   type: NodePort
   nodePort:
     http: 30007
-
 postgresql:
   enabled: false
-
 supersetNode:
   replicaCount: 1
   connections:
@@ -14,7 +12,6 @@ supersetNode:
     db_user: superset
     db_pass: superset
     db_name: superset
-
   resources:
     limits:
       cpu: 2000m
@@ -22,10 +19,8 @@ supersetNode:
     requests:
       cpu: 200m
       memory: 256Mi
-
 supersetCeleryBeat:
   enabled: true
-
 image:
   repository: perceptiveperceval/thesis
-  tag: "custom-superset"
+  tag: "sha-727dc7c"
