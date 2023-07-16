@@ -26,6 +26,28 @@ image:
   tag: "sha-5244dff"
 configOverrides:
   override_file: |
-    SAVE_QUERY_SCHEMA = "financial_query"
-    AVAILABLE_SCHEMAS = ["financial_clean", "financial_user"]
-    SAVE_QUERY_TABLE = "query"
+      SAVE_QUERY_SCHEMA = "financial_query"
+      AVAILABLE_SCHEMAS = ["financial_clean", "financial_user"]
+      SAVE_QUERY_TABLE = "query"
+  registration: |
+      AUTH_TYPE = AUTH_DB
+
+      AUTH_ROLE_ADMIN = 'Admin'
+
+      AUTH_ROLE_PUBLIC = 'User'
+
+
+      AUTH_USER_REGISTRATION = True
+
+      AUTH_USER_REGISTRATION_ROLE = "Public"
+
+
+      RECAPTCHA_PUBLIC_KEY = '6LestignAAAAAP09-EZCr5RykOBJ1hiZmCXHy8AP'
+      RECAPTCHA_PRIVATE_KEY = '6LestignAAAAAHTd_vToS55axYh0Lx07qQIoWIOd'
+
+      MAIL_SERVER = 'smtp.gmail.com'
+      MAIL_USE_TLS = True
+      MAIL_USERNAME = 'catvusuperset@gmail.com'
+      MAIL_PASSWORD = 'iphqwawmeqrtcyfv'
+      MAIL_DEFAULT_SENDER = 'catvusuperset@gmail.com'
+      MAIL_PORT = 587
