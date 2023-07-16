@@ -23,33 +23,33 @@ supersetCeleryBeat:
   enabled: true
 image:
   repository: perceptiveperceval/thesis
-  tag: "sha-5244dff"
+  tag: "sha-83d26cf"
 configOverrides:
   override_file: |
-      SAVE_QUERY_SCHEMA = "financial_query"
-      AVAILABLE_SCHEMAS = ["financial_clean", "financial_user", "sources"]
-      SAVE_QUERY_TABLE = "query"
+    SAVE_QUERY_SCHEMA = "financial_query"
+    AVAILABLE_SCHEMAS = ["financial_clean", "financial_user", "sources"]
+    SAVE_QUERY_TABLE = "query"
   registration: |
-      from flask_appbuilder.security.manager import AUTH_DB
+    from flask_appbuilder.security.manager import AUTH_DB
 
-      AUTH_TYPE = AUTH_DB
+    AUTH_TYPE = AUTH_DB
 
-      AUTH_ROLE_ADMIN = 'Admin'
+    AUTH_ROLE_ADMIN = 'Admin'
 
-      AUTH_ROLE_PUBLIC = 'User'
-
-
-      AUTH_USER_REGISTRATION = True
-
-      AUTH_USER_REGISTRATION_ROLE = "Public"
+    AUTH_ROLE_PUBLIC = 'User'
 
 
-      RECAPTCHA_PUBLIC_KEY = '6Lf1RyknAAAAAORd0Z-PjmKO756Q_N3LPr5pqLTe'
-      RECAPTCHA_PRIVATE_KEY = '6Lf1RyknAAAAABZayhC0VV2eZhVtKiwNiTZHsG2Q'
+    AUTH_USER_REGISTRATION = True
 
-      MAIL_SERVER = 'smtp.gmail.com'
-      MAIL_USE_TLS = True
-      MAIL_USERNAME = 'catvusuperset@gmail.com'
-      MAIL_PASSWORD = 'iphqwawmeqrtcyfv'
-      MAIL_DEFAULT_SENDER = 'catvusuperset@gmail.com'
-      MAIL_PORT = 587
+    AUTH_USER_REGISTRATION_ROLE = "Public"
+
+
+    RECAPTCHA_PUBLIC_KEY = '6Lf1RyknAAAAAORd0Z-PjmKO756Q_N3LPr5pqLTe'
+    RECAPTCHA_PRIVATE_KEY = '6Lf1RyknAAAAABZayhC0VV2eZhVtKiwNiTZHsG2Q'
+
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = 'catvusuperset@gmail.com'
+    MAIL_PASSWORD = 'iphqwawmeqrtcyfv'
+    MAIL_DEFAULT_SENDER = 'catvusuperset@gmail.com'
+    MAIL_PORT = 587
