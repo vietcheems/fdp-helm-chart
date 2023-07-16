@@ -2,7 +2,6 @@ dagit:
   service:
     type: NodePort
     nodePort: 30003
-
 dagster-user-deployments:
   enableSubchart: true
   deployments:
@@ -10,7 +9,7 @@ dagster-user-deployments:
       image:
         # When a tag is not supplied, it will default as the Helm chart version.
         repository: "docker.io/jazzdung/dagster-financial"
-        tag: "2.3"
+        tag: "sha-e638da4"
         pullPolicy: Always
       dagsterApiGrpcArgs:
         - "--python-file"
@@ -31,7 +30,6 @@ dagster-user-deployments:
           readOnly: true
         - name: task-pv-storage
           mountPath: "/financial/dbt/models"
-
 # postgresql:
 #   persistence:
 #     size: 1Gi
