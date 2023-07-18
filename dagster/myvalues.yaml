@@ -9,7 +9,7 @@ dagster-user-deployments:
       image:
         # When a tag is not supplied, it will default as the Helm chart version.
         repository: "docker.io/jazzdung/dagster-financial"
-        tag: "sha-26094a8"
+        tag: "sha-b6fc7d4"
         pullPolicy: Always
       dagsterApiGrpcArgs:
         - "--python-file"
