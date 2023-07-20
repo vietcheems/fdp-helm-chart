@@ -7,7 +7,7 @@ postgresql:
 supersetNode:
   replicaCount: 4
   connections:
-    db_host: 'timescaledb.fdp.svc.cluster.local'
+    db_host: "timescaledb.fdp.svc.cluster.local"
     db_port: "5432"
     db_user: superset
     db_pass: superset
@@ -166,3 +166,19 @@ configOverrides:
 
 
     CELERY_CONFIG = CeleryConfig
+  report: |
+    EMAIL_PAGE_RENDER_WAIT = 60
+    WEBDRIVER_BASEURL = "http://{{ template "superset.fullname" . }}:{{ .Values.service.port }}/"
+    WEBDRIVER_BASEURL_USER_FRIENDLY = "https://www.example.com/"
+    WEBDRIVER_TYPE= "chrome"
+    WEBDRIVER_OPTION_ARGS = [
+        "--force-device-scale-factor=2.0",
+        "--high-dpi-support=2.0",
+        "--headless",
+        "--disable-gpu",
+        "--disable-dev-shm-usage",
+        # This is required because our process runs as root (in order to install pip packages)
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-extensions",
+    ]
