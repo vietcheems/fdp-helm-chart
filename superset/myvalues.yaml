@@ -62,8 +62,7 @@ configOverrides:
   feature_flags: |
     FEATURE_FLAGS = {
     'SQL_VALIDATORS_BY_ENGINE': {
-    'postgresql': 'PostgreSQLValidator',
-      }
+    'postgresql': 'PostgreSQLValidator'},
     "ALERT_REPORTS": True,
     "ENABLE_TEMPLATE_PROCESSING": True,
     }
