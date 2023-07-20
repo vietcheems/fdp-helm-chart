@@ -27,7 +27,7 @@ image:
 configOverrides:
   override_file: |
     SAVE_QUERY_SCHEMA = "financial_query"
-    AVAILABLE_SCHEMAS = ["financial_clean", "financial_user"]
+    AVAILABLE_SCHEMAS = ["financial_user","marts"]
     SAVE_QUERY_TABLE = "query"
     WTF_CSRF_EXEMPT_LIST = [
     "superset.security.api.get_email",
