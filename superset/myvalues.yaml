@@ -27,11 +27,17 @@ image:
 configOverrides:
   override_file: |
     SAVE_QUERY_SCHEMA = "financial_query"
-    AVAILABLE_SCHEMAS = ["financial_clean", "financial_user", "sources"]
+    AVAILABLE_SCHEMAS = ["financial_clean", "financial_user"]
     SAVE_QUERY_TABLE = "query"
-  registration: |
-    from flask_appbuilder.security.manager import AUTH_DB
+    WTF_CSRF_EXEMPT_LIST = [
+    "superset.security.api.get_email",
+    "superset.views.core.log",
+    "superset.views.core.explore_json",
+    "superset.charts.data.api.data"
+    "superset.datasets.api.put"
+    ]
 
+  registration: |
     AUTH_TYPE = AUTH_DB
 
     AUTH_ROLE_ADMIN = 'Admin'
@@ -44,8 +50,8 @@ configOverrides:
     AUTH_USER_REGISTRATION_ROLE = "Public"
 
 
-    RECAPTCHA_PUBLIC_KEY = '6Lf1RyknAAAAAORd0Z-PjmKO756Q_N3LPr5pqLTe'
-    RECAPTCHA_PRIVATE_KEY = '6Lf1RyknAAAAABZayhC0VV2eZhVtKiwNiTZHsG2Q'
+    RECAPTCHA_PUBLIC_KEY = '6LestignAAAAAP09-EZCr5RykOBJ1hiZmCXHy8AP'
+    RECAPTCHA_PRIVATE_KEY = '6LestignAAAAAHTd_vToS55axYh0Lx07qQIoWIOd'
 
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_USE_TLS = True
@@ -53,68 +59,113 @@ configOverrides:
     MAIL_PASSWORD = 'iphqwawmeqrtcyfv'
     MAIL_DEFAULT_SENDER = 'catvusuperset@gmail.com'
     MAIL_PORT = 587
-  redis_setup:  |
-      from cachelib import RedisCache
-      from celery.schedules import crontab
-      from superset.superset_typing import CacheConfig
-      FEATURE_FLAGS = {
-          "ALERT_REPORTS": True,
-          "ENABLE_TEMPLATE_PROCESSING": True,
+  feature_flags: |
+    FEATURE_FLAGS = {
+    'SQL_VALIDATORS_BY_ENGINE': {
+    'postgresql': 'PostgreSQLValidator',
       }
-      REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
-      REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
-      CACHE_CONFIG: CacheConfig = {
-          "CACHE_TYPE": "RedisCache",
-          "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
-          "CACHE_KEY_PREFIX": "superset_cache_",
-          "CACHE_REDIS_URL": "redis://%s:%s/2" % (REDIS_HOST, REDIS_PORT),
-      }
-      DATA_CACHE_CONFIG: CacheConfig = {
-          "CACHE_TYPE": "RedisCache",
-          "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
-          "CACHE_KEY_PREFIX": "superset_data_cache_",
-          "CACHE_REDIS_URL": "redis://%s:%s/3" % (REDIS_HOST, REDIS_PORT),
-      }
-      FILTER_STATE_CACHE_CONFIG: CacheConfig = {
-          "CACHE_TYPE": "RedisCache",
-          "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
-          "CACHE_KEY_PREFIX": "superset_filterstate_",
-          "CACHE_REDIS_URL": "redis://%s:%s/5" % (REDIS_HOST, REDIS_PORT),
-      }
-      EXPLORE_FORM_DATA_CACHE_CONFIG: CacheConfig = {
-          "CACHE_TYPE": "RedisCache",
-          "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
-          "CACHE_KEY_PREFIX": "superset_formdata_",
-          "CACHE_REDIS_URL": "redis://%s:%s/6" % (REDIS_HOST, REDIS_PORT),
-      }
-      RESULTS_BACKEND = RedisCache(
-          host=REDIS_HOST, port=REDIS_PORT, key_prefix="superset_results_"
-      )
-      class CeleryConfig(object):
-          broker_url = "redis://%s:%s/0" % (REDIS_HOST, REDIS_PORT)
-          imports = (
-              "superset.sql_lab",
-              "superset.tasks",
-          )
-          result_backend = "redis://%s:%s/0" % (REDIS_HOST, REDIS_PORT)
-          worker_log_level = "DEBUG"
-          worker_prefetch_multiplier = 10
-          task_acks_late = True
-          task_annotations = {
-              "sql_lab.get_sql_results": {
-                  "rate_limit": "100/s",
-              },
-              "email_reports.send": {
-                  "rate_limit": "1/s",
-                  "time_limit": 120,
-                  "soft_time_limit": 150,
-                  "ignore_result": True,
+    "ALERT_REPORTS": True,
+    "ENABLE_TEMPLATE_PROCESSING": True,
+    }
+
+  alert: |
+    import ast
+    SMTP_HOST = "smtp.gmail.com"
+    SMTP_STARTTLS = ast.literal_eval(os.getenv("SMTP_STARTTLS", "True"))
+    SMTP_SSL = ast.literal_eval(os.getenv("SMTP_SSL", "True"))
+    SMTP_USER = "catvusuperset@gmail.com"
+    SMTP_PORT = os.getenv("SMTP_PORT",25)
+    SMTP_PASSWORD = "iphqwawmeqrtcyfv"
+    SMTP_MAIL_FROM = os.getenv("SMTP_MAIL_FROM","catvusuperset@gmail.com")
+
+  redis_setup: |
+    from cachelib import RedisCache
+    from celery.schedules import crontab
+    from superset.superset_typing import CacheConfig
+
+
+
+    REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
+    REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
+
+    CACHE_CONFIG: CacheConfig = {
+        "CACHE_TYPE": "RedisCache",
+        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
+        "CACHE_KEY_PREFIX": "superset_cache_",
+        "CACHE_REDIS_URL": "redis://%s:%s/2" % (REDIS_HOST, REDIS_PORT),
+    }
+
+    DATA_CACHE_CONFIG: CacheConfig = {
+        "CACHE_TYPE": "RedisCache",
+        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
+        "CACHE_KEY_PREFIX": "superset_data_cache_",
+        "CACHE_REDIS_URL": "redis://%s:%s/3" % (REDIS_HOST, REDIS_PORT),
+    }
+
+    FILTER_STATE_CACHE_CONFIG: CacheConfig = {
+        "CACHE_TYPE": "RedisCache",
+        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
+        "CACHE_KEY_PREFIX": "superset_filterstate_",
+        "CACHE_REDIS_URL": "redis://%s:%s/5" % (REDIS_HOST, REDIS_PORT),
+    }
+
+    EXPLORE_FORM_DATA_CACHE_CONFIG: CacheConfig = {
+        "CACHE_TYPE": "RedisCache",
+        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
+        "CACHE_KEY_PREFIX": "superset_formdata_",
+        "CACHE_REDIS_URL": "redis://%s:%s/6" % (REDIS_HOST, REDIS_PORT),
+    }
+
+    RESULTS_BACKEND = RedisCache(
+        host=REDIS_HOST, port=REDIS_PORT, key_prefix="superset_results_"
+    )
+
+
+    class CeleryConfig(object):
+        broker_url = "redis://%s:%s/0" % (REDIS_HOST, REDIS_PORT)
+        imports = (
+            "superset.sql_lab",
+            "superset.tasks",
+            "superset.tasks.thumbnails",
+        )
+        result_backend = "redis://%s:%s/0" % (REDIS_HOST, REDIS_PORT)
+        worker_log_level = "DEBUG"
+        worker_prefetch_multiplier = 10
+        task_acks_late = True
+        task_annotations = {
+            "sql_lab.get_sql_results": {
+                "rate_limit": "100/s",
+            },
+            "email_reports.send": {
+                "rate_limit": "1/s",
+                "time_limit": 120,
+                "soft_time_limit": 150,
+                "ignore_result": True,
+            },
+        }
+        beat_schedule = {
+            "email_reports.schedule_hourly": {
+              "task": "email_reports.schedule_hourly",
+              "schedule": crontab(minute=1, hour="*"),
+            },
+            'reports.scheduler': {
+              'task': 'reports.scheduler',
+              'schedule': crontab(minute='*', hour='*'),
+          },
+            'reports.prune_log': {
+              'task': 'reports.prune_log',
+              'schedule': crontab(minute=0, hour=0),
+          },
+            'cache-warmup-hourly': {
+              'task': 'cache-warmup',
+              'schedule': crontab(minute='*/30', hour='*'),
+              'kwargs': {
+                  'strategy_name': 'top_n_dashboards',
+                  'top_n': 10,
+                  'since': '7 days ago',
               },
           }
-          beat_schedule = {
-              "email_reports.schedule_hourly": {
-                  "task": "email_reports.schedule_hourly",
-                  "schedule": crontab(minute=1, hour="*"),
-              },
-          }
-      CELERY_CONFIG = CeleryConfig
+        }
+
+
+    CELERY_CONFIG = CeleryConfig
