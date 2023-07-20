@@ -23,7 +23,7 @@ supersetCeleryBeat:
   enabled: true
 image:
   repository: perceptiveperceval/thesis
-  tag: "sha-83d26cf"
+  tag: "sha-62ed0ef"
 configOverrides:
   override_file: |
     SAVE_QUERY_SCHEMA = "financial_query"
@@ -36,7 +36,6 @@ configOverrides:
     "superset.charts.data.api.data"
     "superset.datasets.api.put"
     ]
-
   registration: |
     from flask_appbuilder.security.manager import AUTH_DB
     AUTH_TYPE = AUTH_DB
@@ -67,7 +66,6 @@ configOverrides:
     "ALERT_REPORTS": True,
     "ENABLE_TEMPLATE_PROCESSING": True,
     }
-
   alert: |
     import ast
     SMTP_HOST = "smtp.gmail.com"
@@ -77,7 +75,6 @@ configOverrides:
     SMTP_PORT = os.getenv("SMTP_PORT",25)
     SMTP_PASSWORD = "iphqwawmeqrtcyfv"
     SMTP_MAIL_FROM = os.getenv("SMTP_MAIL_FROM","catvusuperset@gmail.com")
-
   redis_setup: |
     from cachelib import RedisCache
     from celery.schedules import crontab
