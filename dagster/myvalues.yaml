@@ -28,8 +28,8 @@ dagster-user-deployments:
         - name: secret-dbt
           mountPath: /secret-dbt
           readOnly: true
-        - name: task-pv-storage
-          mountPath: "/financial/dbt/models"
+        # - name: task-pv-storage
+        #   mountPath: "/financial/dbt/models"
 # postgresql:
 #   persistence:
 #     size: 1Gi
