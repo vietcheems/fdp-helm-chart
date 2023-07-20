@@ -35,6 +35,99 @@
             "custom": {
               "axisCenteredZero": false,
               "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 25,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheus"
+            },
+            "editorMode": "builder",
+            "expr": "kube_horizontalpodautoscaler_status_target_metric{horizontalpodautoscaler=\"application-cpu\", metric_target_type=\"utilization\"}",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "CPU utilisation per pod",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
               "axisLabel": "Number of pods",
               "axisPlacement": "auto",
               "barAlignment": 0,
@@ -83,7 +176,7 @@
           "h": 10,
           "w": 24,
           "x": 0,
-          "y": 0
+          "y": 10
         },
         "id": 24,
         "options": {
@@ -175,7 +268,7 @@
           "h": 8,
           "w": 24,
           "x": 0,
-          "y": 10
+          "y": 20
         },
         "id": 23,
         "options": {
@@ -216,7 +309,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 18
+          "y": 28
         },
         "id": 14,
         "panels": [],
@@ -246,7 +339,7 @@
           "h": 7,
           "w": 24,
           "x": 0,
-          "y": 19
+          "y": 29
         },
         "hiddenSeries": false,
         "id": 1,
@@ -332,7 +425,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 26
+          "y": 36
         },
         "id": 15,
         "panels": [],
@@ -363,7 +456,7 @@
           "h": 7,
           "w": 24,
           "x": 0,
-          "y": 27
+          "y": 37
         },
         "id": 2,
         "interval": "1m",
@@ -605,7 +698,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 34
+          "y": 44
         },
         "id": 16,
         "panels": [],
@@ -635,7 +728,7 @@
           "h": 7,
           "w": 24,
           "x": 0,
-          "y": 35
+          "y": 45
         },
         "hiddenSeries": false,
         "id": 3,
@@ -721,7 +814,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 42
+          "y": 52
         },
         "id": 17,
         "panels": [],
@@ -752,7 +845,7 @@
           "h": 7,
           "w": 24,
           "x": 0,
-          "y": 43
+          "y": 53
         },
         "id": 4,
         "interval": "1m",
@@ -994,7 +1087,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 50
+          "y": 60
         },
         "id": 18,
         "panels": [],
@@ -1025,7 +1118,7 @@
           "h": 7,
           "w": 24,
           "x": 0,
-          "y": 51
+          "y": 61
         },
         "id": 5,
         "interval": "1m",
@@ -1294,7 +1387,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 58
+          "y": 68
         },
         "id": 19,
         "panels": [],
@@ -1324,7 +1417,7 @@
           "h": 7,
           "w": 12,
           "x": 0,
-          "y": 59
+          "y": 69
         },
         "hiddenSeries": false,
         "id": 6,
@@ -1414,7 +1507,7 @@
           "h": 7,
           "w": 12,
           "x": 12,
-          "y": 59
+          "y": 69
         },
         "hiddenSeries": false,
         "id": 7,
@@ -1500,7 +1593,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 66
+          "y": 76
         },
         "id": 20,
         "panels": [],
@@ -1530,7 +1623,7 @@
           "h": 7,
           "w": 12,
           "x": 0,
-          "y": 67
+          "y": 77
         },
         "hiddenSeries": false,
         "id": 8,
@@ -1620,7 +1713,7 @@
           "h": 7,
           "w": 12,
           "x": 12,
-          "y": 67
+          "y": 77
         },
         "hiddenSeries": false,
         "id": 9,
@@ -1706,7 +1799,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 74
+          "y": 84
         },
         "id": 21,
         "panels": [],
@@ -1736,7 +1829,7 @@
           "h": 7,
           "w": 12,
           "x": 0,
-          "y": 75
+          "y": 85
         },
         "hiddenSeries": false,
         "id": 10,
@@ -1826,7 +1919,7 @@
           "h": 7,
           "w": 12,
           "x": 12,
-          "y": 75
+          "y": 85
         },
         "hiddenSeries": false,
         "id": 11,
@@ -1912,7 +2005,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 82
+          "y": 92
         },
         "id": 22,
         "panels": [],
@@ -1942,7 +2035,7 @@
           "h": 7,
           "w": 12,
           "x": 0,
-          "y": 83
+          "y": 93
         },
         "hiddenSeries": false,
         "id": 12,
@@ -2032,7 +2125,7 @@
           "h": 7,
           "w": 12,
           "x": 12,
-          "y": 83
+          "y": 93
         },
         "hiddenSeries": false,
         "id": 13,
@@ -2241,7 +2334,7 @@
       ]
     },
     "time": {
-      "from": "now-1h",
+      "from": "now-15m",
       "to": "now"
     },
     "timepicker": {
@@ -2272,6 +2365,6 @@
     "timezone": "utc",
     "title": "Workload",
     "uid": "fbbe588f-d06c-48cd-99f0-f428d19bec74",
-    "version": 5,
+    "version": 6,
     "weekStart": ""
   }
