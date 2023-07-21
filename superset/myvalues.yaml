@@ -75,7 +75,7 @@ configOverrides:
     SMTP_PORT = os.getenv("SMTP_PORT",25)
     SMTP_PASSWORD = "iphqwawmeqrtcyfv"
     SMTP_MAIL_FROM = os.getenv("SMTP_MAIL_FROM","catvusuperset@gmail.com")
-    WEBDRIVER_BASEURL = "http://34.82.185.252:30007/"
+    WEBDRIVER_BASEURL = "http://superset:8088/"
   redis_setup: |
     from cachelib import RedisCache
     from celery.schedules import crontab
