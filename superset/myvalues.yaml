@@ -65,6 +65,8 @@ configOverrides:
     'postgresql': 'PostgreSQLValidator'},
     "ALERT_REPORTS": True,
     "ENABLE_TEMPLATE_PROCESSING": True,
+    "DRILL_TO_DETAIL": True,
+    "DASHBOARD_CROSS_FILTERS": True
     }
   alert: |
     import ast
