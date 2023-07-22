@@ -23,7 +23,7 @@ supersetCeleryBeat:
   enabled: true
 image:
   repository: perceptiveperceval/thesis
-  tag: "sha-b586574"
+  tag: "sha-516e2be"
 configOverrides:
   override_file: |
     SAVE_QUERY_SCHEMA = "financial_query"
