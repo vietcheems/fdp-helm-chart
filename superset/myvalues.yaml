@@ -69,7 +69,7 @@ configOverrides:
   alert: |
     import ast
     SMTP_HOST = "smtp.gmail.com"
-    SMTP_STARTTLS = ast.literal_eval(os.getenv("SMTP_STARTTLS", "True"))
+    # SMTP_STARTTLS = ast.literal_eval(os.getenv("SMTP_STARTTLS", "True"))
     SMTP_SSL = ast.literal_eval(os.getenv("SMTP_SSL", "True"))
     SMTP_USER = "catvusuperset@gmail.com"
     SMTP_PORT = os.getenv("SMTP_PORT",465)
