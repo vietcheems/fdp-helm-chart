@@ -21,15 +21,15 @@ dagster-user-deployments:
         - name: secret-dbt
           secret:
             secretName: secret-dbt
-        - name: task-pv-storage
-          persistentVolumeClaim:
-            claimName: user-model-claim
+        # - name: task-pv-storage
+        #   persistentVolumeClaim:
+        #     claimName: user-model-claim
       volumeMounts:
         - name: secret-dbt
           mountPath: /secret-dbt
           readOnly: true
-        - name: task-pv-storage
-          mountPath: "/financial/dbt/models/user"
+        # - name: task-pv-storage
+        #   mountPath: "/financial/dbt/models/user"
 # postgresql:
 #   persistence:
 #     size: 1Gi
