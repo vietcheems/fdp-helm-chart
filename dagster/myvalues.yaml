@@ -9,7 +9,7 @@ dagster-user-deployments:
       image:
         # When a tag is not supplied, it will default as the Helm chart version.
         repository: "docker.io/jazzdung/dagster-financial"
-        tag: "sha-517623d"
+        tag: "sha-695605b"
         pullPolicy: Always
       dagsterApiGrpcArgs:
         - "--python-file"
@@ -21,15 +21,15 @@ dagster-user-deployments:
         - name: secret-dbt
           secret:
             secretName: secret-dbt
-        # - name: task-pv-storage
-        #   persistentVolumeClaim:
-        #     claimName: user-model-claim
+            # - name: task-pv-storage
+            #   persistentVolumeClaim:
+            #     claimName: user-model-claim
       volumeMounts:
         - name: secret-dbt
           mountPath: /secret-dbt
           readOnly: true
-        # - name: task-pv-storage
-        #   mountPath: "/financial/dbt/models/user"
+          # - name: task-pv-storage
+          #   mountPath: "/financial/dbt/models/user"
 # postgresql:
 #   persistence:
 #     size: 1Gi
