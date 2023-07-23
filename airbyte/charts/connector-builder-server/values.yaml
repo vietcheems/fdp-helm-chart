@@ -93,7 +93,7 @@ resources:
 ##  service.type The service type to use for the API server
 ##  service.port The service port to expose the API server on
 service:
-  type: NodePort
+  type: ClusterIP
   port: 80
   annotations: {}
 
