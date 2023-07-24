@@ -157,7 +157,7 @@
           "refId": "B"
         }
       ],
-      "title": "CPU utilisation per pod",
+      "title": "CPU utilisation per pod in $workload",
       "transformations": [
         {
           "disabled": true,
@@ -521,7 +521,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2264,7 +2265,7 @@
       }
     }
   ],
-  "refresh": "10s",
+  "refresh": false,
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -2396,8 +2397,8 @@
     ]
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2023-07-24T17:11:26.099Z",
+    "to": "2023-07-24T17:29:49.290Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -2427,6 +2428,6 @@
   "timezone": "utc",
   "title": "Workload",
   "uid": "fbbe588f-d06c-48cd-99f0-f428d19bec74",
-  "version": 15,
+  "version": 16,
   "weekStart": ""
 }
