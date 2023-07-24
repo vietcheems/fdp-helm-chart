@@ -25,17 +25,10 @@ image:
   repository: perceptiveperceval/thesis
   tag: "sha-3f36372"
 configOverrides:
-  override_file: |
+  save_query: |
     SAVE_QUERY_SCHEMA = "financial_query"
-    AVAILABLE_SCHEMAS = ["financial_user","marts"]
+    AVAILABLE_SCHEMAS = ["financial_user","marts","user"]
     SAVE_QUERY_TABLE = "query"
-    WTF_CSRF_EXEMPT_LIST = [
-    "superset.security.api.get_email",
-    "superset.views.core.log",
-    "superset.views.core.explore_json",
-    "superset.charts.data.api.data"
-    "superset.datasets.api.put"
-    ]
   registration: |
     from flask_appbuilder.security.manager import AUTH_DB
     AUTH_TYPE = AUTH_DB
@@ -78,7 +71,6 @@ configOverrides:
     SMTP_PASSWORD = "iphqwawmeqrtcyfv"
     SMTP_MAIL_FROM = os.getenv("SMTP_MAIL_FROM","catvusuperset@gmail.com")
     WEBDRIVER_BASEURL = "http://superset:8088/"
-    # ALERT_REPORTS_NOTIFICATION_DRY_RUN = True
   redis_setup: |
     from cachelib import RedisCache
     from celery.schedules import crontab
