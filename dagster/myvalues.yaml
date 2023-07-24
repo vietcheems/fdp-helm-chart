@@ -3,36 +3,29 @@ dagit:
     type: NodePort
     nodePort: 30003
 dagster-user-deployments:
-  enableSubchart: true
   deployments:
     - name: "financial"
       image:
-        # When a tag is not supplied, it will default as the Helm chart version.
         repository: "docker.io/jazzdung/dagster-financial"
         tag: "sha-56bec92"
-        pullPolicy: Always
       dagsterApiGrpcArgs:
         - "--python-file"
         - "/financial/dagster/financial/__init__.py"
         - "--working-directory"
         - "/financial/dagster"
-      port: 3030
       volumes:
         - name: secret-dbt
           secret:
             secretName: secret-dbt
-            # - name: task-pv-storage
-            #   persistentVolumeClaim:
-            #     claimName: user-model-claim
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: user-model-claim
       volumeMounts:
         - name: secret-dbt
           mountPath: /secret-dbt
           readOnly: true
-          # - name: task-pv-storage
-          #   mountPath: "/financial/dbt/models/user"
-# postgresql:
-#   persistence:
-#     size: 1Gi
+        - name: task-pv-storage
+          mountPath: "/financial/dbt/models/user"
 postgresql:
   enabled: false
   postgresqlHost: timescaledb.fdp.svc.cluster.local
