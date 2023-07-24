@@ -8,11 +8,13 @@ dagster-user-deployments:
       image:
         repository: "docker.io/jazzdung/dagster-financial"
         tag: "sha-56bec92"
+        pullPolicy: Always
       dagsterApiGrpcArgs:
         - "--python-file"
         - "/financial/dagster/financial/__init__.py"
         - "--working-directory"
         - "/financial/dagster"
+      port: 3030
       volumes:
         - name: secret-dbt
           secret:
