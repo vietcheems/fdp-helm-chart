@@ -164,9 +164,14 @@ configOverrides:
     CELERY_CONFIG = CeleryConfig
 supersetWorker:
   replicaCount: 1
-  # -- Worker startup command
-  # @default -- a `celery worker` command
   command:
     - "/bin/sh"
     - "-c"
     - "apt-get update -y && apt-get update -y \\\n&& apt-get install -y --no-install-recommends \\\n    libnss3 \\\n    libdbus-glib-1-2 \\\n    libgtk-3-0 \\\n    libx11-xcb1 \\\n    libasound2 \\\n    libxtst6 \\\n    wget \\\n    unzip\nGECKODRIVER_VERSION=v0.32.0\nFIREFOX_VERSION=106.0.3    \n# Install GeckoDriver WebDriver    \nwget https://github.com/mozilla/geckodriver/releases/download/${GECKODRIVER_VERSION}/geckodriver-${GECKODRIVER_VERSION}-linux64.tar.gz -O /tmp/geckodriver.tar.gz && \\\n  tar xvfz /tmp/geckodriver.tar.gz -C /tmp && \\\n  mv /tmp/geckodriver /usr/local/bin/geckodriver && \\\n  rm /tmp/geckodriver.tar.gz  \n\n# Install Firefox\nwget https://download-installer.cdn.mozilla.net/pub/firefox/releases/${FIREFOX_VERSION}/linux-x86_64/en-US/firefox-${FIREFOX_VERSION}.tar.bz2 -O /opt/firefox.tar.bz2 && \\\n     tar xvf /opt/firefox.tar.bz2 -C /opt && \\\n     ln -s /opt/firefox/firefox /usr/local/bin/firefox    \n\n. {{ .Values.configMountPath }}/superset_bootstrap.sh; celery --app=superset.tasks.celery_app:app worker\n"
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 2560Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
