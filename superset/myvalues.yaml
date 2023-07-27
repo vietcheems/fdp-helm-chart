@@ -27,7 +27,7 @@ image:
 configOverrides:
   save_query: |
     SAVE_QUERY_SCHEMA = "financial_query"
-    AVAILABLE_SCHEMAS = ["prediction","marts","user"]
+    AVAILABLE_SCHEMAS = ["prediction","marts","user","financial_query"]
     SAVE_QUERY_TABLE = "query"
   registration: |
     from flask_appbuilder.security.manager import AUTH_DB
