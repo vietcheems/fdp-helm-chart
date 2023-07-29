@@ -121,7 +121,7 @@ configOverrides:
             "superset.tasks.thumbnails",
         )
         result_backend = "redis://%s:%s/0" % (REDIS_HOST, REDIS_PORT)
-        worker_log_level = "DEBUG"
+        worker_log_level = "INFO"
         worker_prefetch_multiplier = 10
         task_acks_late = True
         task_annotations = {
@@ -136,10 +136,6 @@ configOverrides:
             },
         }
         beat_schedule = {
-            "email_reports.schedule_hourly": {
-              "task": "email_reports.schedule_hourly",
-              "schedule": crontab(minute=1, hour="*"),
-            },
             'reports.scheduler': {
               'task': 'reports.scheduler',
               'schedule': crontab(minute='*', hour='*'),
