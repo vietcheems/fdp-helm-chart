@@ -31,30 +31,24 @@ configOverrides:
   registration: |
     from flask_appbuilder.security.manager import AUTH_DB
     AUTH_TYPE = AUTH_DB
-
-    AUTH_ROLE_ADMIN = 'Admin'
-
-    AUTH_ROLE_PUBLIC = 'User'
-
-
+    AUTH_ROLE_ADMIN = "Admin"
+    AUTH_ROLE_PUBLIC = "User"
     AUTH_USER_REGISTRATION = True
+    AUTH_USER_REGISTRATION_ROLE = "Gamma"
 
-    AUTH_USER_REGISTRATION_ROLE = "Public"
+    RECAPTCHA_PUBLIC_KEY = "6LestignAAAAAP09-EZCr5RykOBJ1hiZmCXHy8AP"
+    RECAPTCHA_PRIVATE_KEY = "6LestignAAAAAHTd_vToS55axYh0Lx07qQIoWIOd"
 
-
-    RECAPTCHA_PUBLIC_KEY = '6LestignAAAAAP09-EZCr5RykOBJ1hiZmCXHy8AP'
-    RECAPTCHA_PRIVATE_KEY = '6LestignAAAAAHTd_vToS55axYh0Lx07qQIoWIOd'
-
-    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_SERVER = "smtp.gmail.com"
     MAIL_USE_TLS = True
-    MAIL_USERNAME = 'catvusuperset@gmail.com'
-    MAIL_PASSWORD = 'iphqwawmeqrtcyfv'
-    MAIL_DEFAULT_SENDER = 'catvusuperset@gmail.com'
+    MAIL_USERNAME = "catvusuperset@gmail.com"
+    MAIL_PASSWORD = "iphqwawmeqrtcyfv"
+    MAIL_DEFAULT_SENDER = "catvusuperset@gmail.com"
     MAIL_PORT = 587
   feature_flags: |
     FEATURE_FLAGS = {
-    'SQL_VALIDATORS_BY_ENGINE': {
-    'postgresql': 'PostgreSQLValidator'},
+    "SQL_VALIDATORS_BY_ENGINE": {
+    "postgresql": "PostgreSQLValidator"},
     "ALERT_REPORTS": True,
     "ENABLE_TEMPLATE_PROCESSING": True,
     "DRILL_TO_DETAIL": True,
@@ -71,7 +65,7 @@ configOverrides:
     SMTP_PASSWORD = "iphqwawmeqrtcyfv"
     SMTP_MAIL_FROM = os.getenv("SMTP_MAIL_FROM","catvusuperset@gmail.com")
     WEBDRIVER_BASEURL = "http://superset:8088/"
-  redis_setup: |
+  cache: |
     from cachelib import RedisCache
     from celery.schedules import crontab
     from superset.superset_typing import CacheConfig
@@ -113,13 +107,11 @@ configOverrides:
         host=REDIS_HOST, port=REDIS_PORT, key_prefix="superset_results_"
     )
 
-
     class CeleryConfig(object):
         broker_url = "redis://%s:%s/0" % (REDIS_HOST, REDIS_PORT)
         imports = (
             "superset.sql_lab",
             "superset.tasks",
-            "superset.tasks.thumbnails",
         )
         result_backend = "redis://%s:%s/0" % (REDIS_HOST, REDIS_PORT)
         worker_log_level = "INFO"
@@ -137,26 +129,25 @@ configOverrides:
             },
         }
         beat_schedule = {
-            'reports.scheduler': {
-              'task': 'reports.scheduler',
-              'schedule': crontab(minute='*', hour='*'),
+            "reports.scheduler": {
+              "task": "reports.scheduler",
+              "schedule": crontab(minute="*", hour="*"),
           },
-            'reports.prune_log': {
-              'task': 'reports.prune_log',
-              'schedule': crontab(minute=0, hour=0),
+            "reports.prune_log": {
+              "task": "reports.prune_log",
+              "schedule": crontab(minute=0, hour=0),
           },
-            'cache-warmup-hourly': {
-              'task': 'cache-warmup',
-              'schedule': crontab(minute='*/30', hour='*'),
-              'kwargs': {
-                  'strategy_name': 'top_n_dashboards',
-                  'top_n': 10,
-                  'since': '7 days ago',
+            "cache-warmup-hourly": {
+              "task": "cache-warmup",
+              "schedule": crontab(minute="*/30", hour="*"),
+              "kwargs": {
+                  "strategy_name": "top_n_dashboards",
+                  "top_n": 10,
+                  "since": "7 days ago",
               },
           }
         }
-
-
+    
     CELERY_CONFIG = CeleryConfig
 supersetWorker:
   replicaCount: 1
@@ -168,3 +159,5 @@ supersetWorker:
     requests:
       cpu: 1000m
       memory: 1024Mi
+redis:
+  enabled: true
