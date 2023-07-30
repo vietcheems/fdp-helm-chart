@@ -58,9 +58,9 @@ configOverrides:
     "ALERT_REPORTS": True,
     "ENABLE_TEMPLATE_PROCESSING": True,
     "DRILL_TO_DETAIL": True,
-    "DASHBOARD_CROSS_FILTERS": True
+    "DASHBOARD_CROSS_FILTERS": True,
     "STORE_CACHE_KEYS_IN_METADATA_DB": True,
-    "ESTIMATE_QUERY_COST": True
+    "ESTIMATE_QUERY_COST": True,
     }
   alert: |
     import ast
