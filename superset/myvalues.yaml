@@ -59,7 +59,6 @@ configOverrides:
     "ENABLE_TEMPLATE_PROCESSING": True,
     "DRILL_TO_DETAIL": True,
     "DASHBOARD_CROSS_FILTERS": True,
-    "STORE_CACHE_KEYS_IN_METADATA_DB": True,
     "ESTIMATE_QUERY_COST": True,
     }
   alert: |
@@ -78,7 +77,7 @@ configOverrides:
     from superset.superset_typing import CacheConfig
 
 
-
+    STORE_CACHE_KEYS_IN_METADATA_DB = True,
     REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
     REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
 
