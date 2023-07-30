@@ -23,7 +23,7 @@ supersetCeleryBeat:
   enabled: true
 image:
   repository: perceptiveperceval/thesis
-  tag: "sha-b2863d0"
+  tag: "sha-6484d40"
 configOverrides:
   save_query: |
     SAVE_QUERY_SCHEMA = "financial_query"
@@ -147,7 +147,7 @@ configOverrides:
               },
           }
         }
-    
+
     CELERY_CONFIG = CeleryConfig
 supersetWorker:
   replicaCount: 1
