@@ -19,12 +19,18 @@ dagster-user-deployments:
         - name: secret-dbt
           secret:
             secretName: secret-dbt
+        - name: secret-dagster
+          secret:
+            secretName: secret-dagster
         # - name: task-pv-storage
         #   persistentVolumeClaim:
         #     claimName: user-model-claim
       volumeMounts:
         - name: secret-dbt
           mountPath: /secret-dbt
+          readOnly: true
+        - name: secret-dagster
+          mountPath: /financial/dagster/financial/secret
           readOnly: true
         # - name: task-pv-storage
         #   mountPath: "/financial/dbt/models/user"
