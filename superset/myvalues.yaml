@@ -77,7 +77,7 @@ configOverrides:
     
     from celery.schedules import crontab
     class CeleryConfig(object):
-        broker_url = f"redis://{REDIS_HOST}:REDIS_PORT}/0"
+        broker_url = f"redis://{REDIS_HOST}:{REDIS_PORT}/0"
         imports = (
             "superset.sql_lab",
             "superset.tasks",
