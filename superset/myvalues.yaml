@@ -65,47 +65,9 @@ configOverrides:
     SMTP_PASSWORD = "iphqwawmeqrtcyfv"
     SMTP_MAIL_FROM = os.getenv("SMTP_MAIL_FROM","catvusuperset@gmail.com")
     WEBDRIVER_BASEURL = "http://superset:8088/"
-  cache: |
-    from cachelib import RedisCache
-    from celery.schedules import crontab
-    from superset.superset_typing import CacheConfig
 
-
-    STORE_CACHE_KEYS_IN_METADATA_DB = True,
     REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
     REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
-
-    CACHE_CONFIG: CacheConfig = {
-        "CACHE_TYPE": "RedisCache",
-        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
-        "CACHE_KEY_PREFIX": "superset_cache_",
-        "CACHE_REDIS_URL": "redis://%s:%s/2" % (REDIS_HOST, REDIS_PORT),
-    }
-
-    DATA_CACHE_CONFIG: CacheConfig = {
-        "CACHE_TYPE": "RedisCache",
-        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
-        "CACHE_KEY_PREFIX": "superset_data_cache_",
-        "CACHE_REDIS_URL": "redis://%s:%s/3" % (REDIS_HOST, REDIS_PORT),
-    }
-
-    FILTER_STATE_CACHE_CONFIG: CacheConfig = {
-        "CACHE_TYPE": "RedisCache",
-        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
-        "CACHE_KEY_PREFIX": "superset_filterstate_",
-        "CACHE_REDIS_URL": "redis://%s:%s/5" % (REDIS_HOST, REDIS_PORT),
-    }
-
-    EXPLORE_FORM_DATA_CACHE_CONFIG: CacheConfig = {
-        "CACHE_TYPE": "RedisCache",
-        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
-        "CACHE_KEY_PREFIX": "superset_formdata_",
-        "CACHE_REDIS_URL": "redis://%s:%s/6" % (REDIS_HOST, REDIS_PORT),
-    }
-
-    RESULTS_BACKEND = RedisCache(
-        host=REDIS_HOST, port=REDIS_PORT, key_prefix="superset_results_"
-    )
 
     class CeleryConfig(object):
         broker_url = "redis://%s:%s/0" % (REDIS_HOST, REDIS_PORT)
@@ -149,6 +111,47 @@ configOverrides:
         }
     
     CELERY_CONFIG = CeleryConfig
+
+  cache: |
+    from cachelib import RedisCache
+    from celery.schedules import crontab
+    from superset.superset_typing import CacheConfig
+
+
+    STORE_CACHE_KEYS_IN_METADATA_DB = True,
+
+    CACHE_CONFIG: CacheConfig = {
+        "CACHE_TYPE": "RedisCache",
+        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
+        "CACHE_KEY_PREFIX": "superset_cache_",
+        "CACHE_REDIS_URL": "redis://%s:%s/2" % (REDIS_HOST, REDIS_PORT),
+    }
+
+    DATA_CACHE_CONFIG: CacheConfig = {
+        "CACHE_TYPE": "RedisCache",
+        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
+        "CACHE_KEY_PREFIX": "superset_data_cache_",
+        "CACHE_REDIS_URL": "redis://%s:%s/3" % (REDIS_HOST, REDIS_PORT),
+    }
+
+    FILTER_STATE_CACHE_CONFIG: CacheConfig = {
+        "CACHE_TYPE": "RedisCache",
+        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
+        "CACHE_KEY_PREFIX": "superset_filterstate_",
+        "CACHE_REDIS_URL": "redis://%s:%s/5" % (REDIS_HOST, REDIS_PORT),
+    }
+
+    EXPLORE_FORM_DATA_CACHE_CONFIG: CacheConfig = {
+        "CACHE_TYPE": "RedisCache",
+        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
+        "CACHE_KEY_PREFIX": "superset_formdata_",
+        "CACHE_REDIS_URL": "redis://%s:%s/6" % (REDIS_HOST, REDIS_PORT),
+    }
+
+    RESULTS_BACKEND = RedisCache(
+        host=REDIS_HOST, port=REDIS_PORT, key_prefix="superset_results_"
+    )
+
 supersetWorker:
   replicaCount: 1
   command:
