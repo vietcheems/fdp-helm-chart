@@ -82,7 +82,7 @@ configOverrides:
             "superset.sql_lab",
             "superset.tasks",
         )
-        result_backend = f"redis://{REDIS_HOST}:{REDIS_PORT}}/0"
+        result_backend = f"redis://{REDIS_HOST}:{REDIS_PORT}/0"
         worker_log_level = "INFO"
         worker_prefetch_multiplier = 10
         task_acks_late = True
@@ -130,28 +130,28 @@ configOverrides:
         "CACHE_TYPE": "RedisCache",
         "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
         "CACHE_KEY_PREFIX": "superset_cache_",
-        "CACHE_REDIS_URL":f"redis://{REDIS_HOST}:{REDIS_PORT}}/2"
+        "CACHE_REDIS_URL":f"redis://{REDIS_HOST}:{REDIS_PORT}/2"
     }
 
     DATA_CACHE_CONFIG: CacheConfig = {
         "CACHE_TYPE": "RedisCache",
         "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
         "CACHE_KEY_PREFIX": "superset_data_cache_",
-        "CACHE_REDIS_URL":f"redis://{REDIS_HOST}:{REDIS_PORT}}/3"
+        "CACHE_REDIS_URL":f"redis://{REDIS_HOST}:{REDIS_PORT}/3"
     }
 
     FILTER_STATE_CACHE_CONFIG: CacheConfig = {
         "CACHE_TYPE": "RedisCache",
         "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
         "CACHE_KEY_PREFIX": "superset_filterstate_",
-        "CACHE_REDIS_URL":f"redis://{REDIS_HOST}:{REDIS_PORT}}/5"
+        "CACHE_REDIS_URL":f"redis://{REDIS_HOST}:{REDIS_PORT}/5"
     }
 
     EXPLORE_FORM_DATA_CACHE_CONFIG: CacheConfig = {
         "CACHE_TYPE": "RedisCache",
         "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 2,
         "CACHE_KEY_PREFIX": "superset_formdata_",
-        "CACHE_REDIS_URL":f"redis://{REDIS_HOST}:{REDIS_PORT}}/6"
+        "CACHE_REDIS_URL":f"redis://{REDIS_HOST}:{REDIS_PORT}/6"
     }
 
     RESULTS_BACKEND = RedisCache(
