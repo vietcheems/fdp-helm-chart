@@ -63,6 +63,8 @@ configOverrides:
     }
   alert: |
     import ast
+    from celery.schedules import crontab
+    
     SMTP_HOST = "smtp.gmail.com"
     SMTP_STARTTLS = ast.literal_eval(os.getenv("SMTP_STARTTLS", "False"))
     SMTP_SSL = ast.literal_eval(os.getenv("SMTP_SSL", "True"))
@@ -74,8 +76,8 @@ configOverrides:
 
     REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
     REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
+
     
-    from celery.schedules import crontab
     class CeleryConfig(object):
         broker_url = "redis://%s:%s/0" % (REDIS_HOST, REDIS_PORT)
         imports = (
@@ -121,7 +123,7 @@ configOverrides:
 
   cache: |
     from cachelib import RedisCache
-    from superset.superset_typing import CacheConfig
+    from superset.superset_typing import  
 
 
     STORE_CACHE_KEYS_IN_METADATA_DB = True,
