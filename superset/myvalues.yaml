@@ -6,6 +6,12 @@ postgresql:
   enabled: false
 supersetNode:
   replicaCount: 1
+  command:
+    - /bin/sh
+    - -c
+    - |
+      pip install Flask-Mail
+      . {{ .Values.configMountPath }}/superset_bootstrap.sh; /usr/bin/run-server.sh
   connections:
     db_host: "timescaledb.fdp.svc.cluster.local"
     db_port: "5432"
@@ -68,7 +74,8 @@ configOverrides:
 
     REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
     REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
-
+    
+    from celery.schedules import crontab
     class CeleryConfig(object):
         broker_url = "redis://%s:%s/0" % (REDIS_HOST, REDIS_PORT)
         imports = (
@@ -114,7 +121,6 @@ configOverrides:
 
   cache: |
     from cachelib import RedisCache
-    from celery.schedules import crontab
     from superset.superset_typing import CacheConfig
 
 
