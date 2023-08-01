@@ -72,6 +72,8 @@ configOverrides:
     SMTP_MAIL_FROM = os.getenv("SMTP_MAIL_FROM","catvusuperset@gmail.com")
     WEBDRIVER_BASEURL = "http://superset:8088/"
 
+    ALERT_REPORTS_NOTIFICATION_DRY_RUN = False
+    
     REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
     REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
 
