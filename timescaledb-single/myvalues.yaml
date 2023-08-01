@@ -2,7 +2,7 @@ persistentVolumes:
   wal:
     enabled: false
   data:
-    enabled: true
+    enabled: false
     storageClass: local-storage
 
 secrets:
