@@ -29,7 +29,7 @@ supersetCeleryBeat:
   enabled: true
 image:
   repository: perceptiveperceval/thesis
-  tag: "sha-44364a0"
+  tag: "sha-af6ee35"
 configOverrides:
   save_query: |
     SAVE_QUERY_SCHEMA = "financial_query"
@@ -73,7 +73,7 @@ configOverrides:
     WEBDRIVER_BASEURL = "http://superset:8088/"
 
     ALERT_REPORTS_NOTIFICATION_DRY_RUN = False
-    
+
     REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
     REDIS_PORT = os.environ.get("REDIS_PORT", 6379)
 
