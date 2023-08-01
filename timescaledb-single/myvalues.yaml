@@ -25,6 +25,20 @@ patroni:
         password: airbyte
         options:
           - createdb
+      dagster:
+        password: dagster
+        options:
+          - createdb
+      superset:
+        password: superset
+        options:
+          - createdb
+      fdp:
+        password: fdp
+        options:
+          - createdb
+      superset_reader:
+        password: superset_reader
   postgresql:
     pg_hba:
       - host      all             all                0.0.0.0/0          md5
