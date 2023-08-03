@@ -47,9 +47,9 @@ configOverrides:
 
     MAIL_SERVER = "smtp.gmail.com"
     MAIL_USE_TLS = True
-    MAIL_USERNAME = "catvusuperset@gmail.com"
-    MAIL_PASSWORD = "iphqwawmeqrtcyfv"
-    MAIL_DEFAULT_SENDER = "catvusuperset@gmail.com"
+    MAIL_USERNAME = "dungpham.020901@gmail.com"
+    MAIL_PASSWORD = "cwsolrhhnjgegtbt"
+    MAIL_DEFAULT_SENDER = "dungpham.020901@gmail.com"
     MAIL_PORT = 587
   feature_flags: |
     FEATURE_FLAGS = {
