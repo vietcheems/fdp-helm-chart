@@ -58,6 +58,7 @@ configOverrides:
     "ALERT_REPORTS": True,
     "ENABLE_TEMPLATE_PROCESSING": True,
     "DRILL_TO_DETAIL": True,
+    "DRILL_BY": True,
     "DASHBOARD_CROSS_FILTERS": True,
     "ESTIMATE_QUERY_COST": True,
     }
