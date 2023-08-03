@@ -7,7 +7,7 @@ dagster-user-deployments:
     - name: "financial"
       image:
         repository: "docker.io/jazzdung/dagster-financial"
-        tag: "sha-968a7d6"
+        tag: "sha-2688b37"
         pullPolicy: Always
       dagsterApiGrpcArgs:
         - "--python-file"
@@ -22,9 +22,9 @@ dagster-user-deployments:
         - name: secret-dagster
           secret:
             secretName: secret-dagster
-            # - name: task-pv-storage
-            #   persistentVolumeClaim:
-            #     claimName: user-model-claim
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: user-model-claim
       volumeMounts:
         - name: secret-dbt
           mountPath: /secret-dbt
@@ -32,8 +32,8 @@ dagster-user-deployments:
         - name: secret-dagster
           mountPath: /financial/dagster/financial/secret
           readOnly: true
-          # - name: task-pv-storage
-          #   mountPath: "/financial/dbt/models/user"
+        - name: task-pv-storage
+          mountPath: "/financial/dbt/models/user"
 postgresql:
   enabled: false
   postgresqlHost: timescaledb.fdp.svc.cluster.local
