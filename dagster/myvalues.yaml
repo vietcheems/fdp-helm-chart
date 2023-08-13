@@ -7,7 +7,7 @@ dagster-user-deployments:
     - name: "financial"
       image:
         repository: "docker.io/jazzdung/dagster-financial"
-        tag: "sha-7d8b250"
+        tag: "sha-bfca3be"
         pullPolicy: Always
       codeServerArgs:
         - "--python-file"
