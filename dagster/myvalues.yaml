@@ -9,7 +9,7 @@ dagster-user-deployments:
         repository: "docker.io/jazzdung/dagster-financial"
         tag: "sha-c684fa6"
         pullPolicy: Always
-      codeServerArgs:
+      dagsterApiGrpcArgs:
         - "--python-file"
         - "/financial/dagster/financial/__init__.py"
         - "--working-directory"
